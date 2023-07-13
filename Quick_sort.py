@@ -6,26 +6,30 @@ def quick_sort(data):
     if len(data) > 1:
         p = data[len(data)-1]      #pivot
         print(f'p: {p}')
-        lsubarray = data[:data.index(p)-1]
-        rsubarray = data[p:]
-        print(f"l: {lsubarray}")
-        print(f"r: {rsubarray}")
-        k = data[len(data)-2]
+        lsubarray = data[:data.index(p)]
+        rsubarray = data[data.index(p)+1:]
+
+        k = len(data)-2
         for i in range(len(data) -1):
+            print(f'i: {i}')
+            print(f'k: {k}')
+            print(f'data[i]: {data[i]}')
             if i == k:
                 if data[i] > p:
+                    print('hwdp')
                     data[i], data[data.index(p)] = data[data.index(p)], data[i]
-                pass
+                break
 
             if data[i] > p:
-                lswap = data[i]
                 for j in range(len(data)-1):
                     if data[k] < p:
-                        rswap = data[k]
-                        data[i], data[k] = rswap, lswap
+                        print(f'data[k]: {data[k]}')
+                        data[i], data[k] = data[k], data[i]
                         k -= 1
+                        print(data)
+                        break
         print(data)
-        print('')
+        print('____________________________________________________')
         quick_sort(lsubarray)
         quick_sort(rsubarray)
         
