@@ -29,7 +29,7 @@ def quick_sort(data):
                         print(data)
                         break
         print(data)
-        print('_____________________________________________________')
+        print('____________________________________________________')
         quick_sort(lsubarray)
         quick_sort(rsubarray)
         
