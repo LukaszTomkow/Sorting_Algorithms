@@ -5,6 +5,7 @@ def quick_sort(data):
     print(data)
     if len(data) > 1:
         p = data[len(data)-1]      #pivot
+        pindex = len(data)-1       #pivot index
         print(f'p: {p}')
 
 
@@ -14,10 +15,10 @@ def quick_sort(data):
             print(f'k: {k}')
             print(f'data[i]: {data[i]}')
             if i == k:
-                print(f'index(p): {data.index(p)}')
-                print('swapindexvalue')
-                data[i], data[data.index(p)] = data[data.index(p)], data[i]
-                break
+                if data[i] > p:
+                    data[i], data[pindex] = data[pindex], data[i]
+                    print(data)
+                    break
 
             if data[i] > p:
                 for k in range(len(data)-2,0,-1):
