@@ -1,43 +1,26 @@
 import json
 
-
 def quick_sort(data):
-    #print(data)
-    if len(data) > 1:
-        p = data[len(data)-1]      #pivot
-        pindex = len(data)-1       #pivot index
-        #print(f'p: {p}')
+    if len(data) <= 1:
+        return data
 
+    pivot = data[len(data) - 1]
+    pivot_index = len(data) - 1
 
-        k = len(data)-2
-        for i in range(len(data) -1):
-            #print(f'i: {i}')
-            #print(f'k: {k}')
-            #print(f'data[i]: {data[i]}')
-            if i == k:
-                if data[i] > p:
-                    data[i], data[pindex] = data[pindex], data[i]
-                    #print(data)
-                    i = pindex
-                    break
+    i = 0
+    for j in range(len(data) - 1):
+        if data[j] < pivot:
+            data[i], data[j] = data[j], data[i]
+            i += 1
 
-            if data[i] > p:
-                for k in range(len(data)-2,0,-1):
-                    if data[k] < p:
-                        #print(f'data[k]: {data[k]}')
-                        data[i], data[k] = data[k], data[i]
-                        #print(data)
-                        break
-        #print(data)
-        #print('_______________________________________')
-        data[:pindex] = quick_sort(data[:pindex])
-        data[pindex:] = quick_sort(data[pindex:])    
-    return data
+    data[i], data[pivot_index] = data[pivot_index], data[i]
 
+    left_partition = quick_sort(data[:i])
+    right_partition = quick_sort(data[i + 1:])
+    
+    return left_partition + [data[i]] + right_partition
 
-
-with open('dataset_0.json', 'r') as f:
+with open('dataset_1.json', 'r') as f:
     data = json.load(f)
 
 print(quick_sort(data))
-
